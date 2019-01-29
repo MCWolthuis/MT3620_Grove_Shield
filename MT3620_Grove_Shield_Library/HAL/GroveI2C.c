@@ -161,3 +161,35 @@ bool GroveI2C_ReadReg24BE(int fd, uint8_t address, uint8_t reg, uint32_t* val)
 
 
 ////////////////////////////////////////////////////////////////////////////////
+
+/// <summary>
+///		Write multiple bits in an 8-bit device register.
+///		Adaptation from the Arduino I2CDev library of 6/9/2012 by Jeff Rowberg jeff@rowberg.net
+/// </summary>
+/// <param name="fd">I2C master device address</param>
+/// <param name="address">I2C slave device address</param>
+/// <param name="reg">Register address to write to</param>
+/// <param name="bitStart">First bit position to write</param>
+/// <param name="data">Right-aligned value to write</param>
+/// <param name="dataSize">Number of bits to write (no more than 8)</param>
+void GroveI2C_WriteBits(int fd, uint8_t address, uint8_t reg, uint8_t bitStart, uint8_t *data, uint8_t dataSize) {
+	//      010 value to write
+	// 76543210 bit numbers
+	//    xxx   args: bitStart=4, dataSize=3
+	// 00011100 mask byte
+	// 10101111 original value (sample)
+	// 10100011 original & ~mask
+	// 10101011 masked | value
+
+	uint8_t targetByte;
+	uint8_t lData = *data; // localised data to perform bitwise operations on
+
+	if (GroveI2C_ReadReg8(fd, address, reg, &targetByte)) {
+		uint8_t mask = ((1 << dataSize) - 1) << (bitStart - dataSize + 1);
+		lData <<= (bitStart - dataSize + 1);	// shift data into correct position
+		lData &= mask;							// zero all non-important bits in data
+		targetByte &= ~(mask);	 				// zero all important bits in existing byte
+		targetByte |= lData;					// combine data with existing byte
+		GroveI2C_WriteReg8(fd, address, reg, targetByte);
+	}
+}
