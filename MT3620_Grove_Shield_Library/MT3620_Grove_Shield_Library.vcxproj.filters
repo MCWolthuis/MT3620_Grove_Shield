@@ -51,6 +51,9 @@
     <ClCompile Include="Sensors\GroveLightSensor.c">
       <Filter>Sensors</Filter>
     </ClCompile>
+    <ClCompile Include="Sensors\GroveMPU9250.c">
+      <Filter>Sensors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HAL\GroveI2C.h">
@@ -93,6 +96,9 @@
       <Filter>Sensors</Filter>
     </ClInclude>
     <ClInclude Include="Sensors\GroveLightSensor.h">
+      <Filter>Sensors</Filter>
+    </ClInclude>
+    <ClInclude Include="Sensors\GroveMPU9250.h">
       <Filter>Sensors</Filter>
     </ClInclude>
   </ItemGroup>

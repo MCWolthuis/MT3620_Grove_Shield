@@ -19,6 +19,7 @@
     <ClCompile Include="Sensors\GroveAD7992.c" />
     <ClCompile Include="Sensors\GroveLEDButton.c" />
     <ClCompile Include="Sensors\GroveLightSensor.c" />
+    <ClCompile Include="Sensors\GroveMPU9250.c" />
     <ClCompile Include="Sensors\GroveOledDisplay96x96.c" />
     <ClCompile Include="Sensors\GroveRelay.c" />
     <ClCompile Include="Sensors\GroveRotaryAngleSensor.c" />
@@ -37,6 +38,7 @@
     <ClInclude Include="Sensors\GroveAD7992.h" />
     <ClInclude Include="Sensors\GroveLEDButton.h" />
     <ClInclude Include="Sensors\GroveLightSensor.h" />
+    <ClInclude Include="Sensors\GroveMPU9250.h" />
     <ClInclude Include="Sensors\GroveOledDisplay96x96.h" />
     <ClInclude Include="Sensors\GroveRelay.h" />
     <ClInclude Include="Sensors\GroveRotaryAngleSensor.h" />
